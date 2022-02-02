@@ -28,11 +28,7 @@ export default new Vuex.Store({
       console.log(responce.data)
       commit('setNaves', responce.data)
     },
-    // async fetchIndex({commit}, model){
-    //   const respuesta = await axios.get(`https://swapi.py4e.com/api/starships/${model}/`)
-    //   commit('setIndex', respuesta.data)
-    //   console.log(respuesta.data)
-    // },
+  
   
 
     
