@@ -1,8 +1,10 @@
 <template>
 
   
-  <div class="home" id="home">
-
+  <div class="home" id="homes">
+    <div>
+      <img src="https://i.blogs.es/26ba45/star-wars-eras/1366_2000.jpeg" class="img-fluid" alt="...">
+    </div>
   </div>
 
 </template>
@@ -19,11 +21,12 @@ export default {
 </script>
 
 <style scoped>
-#home{
+.home{
   background: black;
-  background-size: contain ;
-  background-position:center;
+  
+  
   
 }
 
 </style>
+

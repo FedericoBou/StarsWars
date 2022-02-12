@@ -1,58 +1,68 @@
-
 <template>
   <div class="container" id="starship">
-   <ul v-for="(nave, index) in allNaves" :key="index" :nave="nave" class="list">
+   <ul v-for="(nave, index) in naves.results" :key="index" :nave="nave" class="list">
      <li>
       <h4 id = "nombre"> <strong >Nombre:</strong>  {{nave.name}} </h4> <br>
       <h6 id = "modelo"><strong >Modelo:</strong> {{nave.model}} </h6><br>
-      <b-button class="mb-3" pill variant="outline-warning" id="boton" size="sm" @click="moreInfo(model)">Más Info</b-button>
+      <b-button class="mb-3" pill variant="outline-warning" id="boton" size="sm" @click="info(nave.name)">Más Info</b-button>
+      <!-- <b-button class="mb-3" pill variant="outline-warning" id="boton" size="sm" @click="obtenerNave(nave.name)">Más Info</b-button> -->
      </li>
    </ul>
-     
+
+   
+  
   </div>
+  
   
 </template>
 
 <script>
-import Vuex from 'vuex'
 
+import {mapActions, mapState, mapGetters, mapMutations } from "vuex";
 
 export default {
+
   components: {
-    
+ 
   },
-  name: 'Ships',
+  
   data(){
       return{
-        busy:false,
+       name: 'Ships',
       }
     },
   computed:{
-    ...Vuex.mapState(['naves', 'modal', 'infoNave']),
-    ...Vuex.mapGetters(['allNaves', 'infoShips']),
-    created(){
-         this.fetchNaves();
-       
 
-         //this.fetchIndex(2);
+    ...mapState(['naves', 'modal', 'infoNave']),
+    ...mapGetters(['allNaves', 'infoShips']),
 
+    
     },
+
+    created(){
+       this.$store.dispatch("fetchNaves")
     
   },
+ 
   methods:{    
-      ...Vuex.mapActions(['fetchNaves', 'fetchIndex',]),
-      ...Vuex.mapMutations(['setNaves','setIndex', 'moreInfo']),
+      ...mapActions(['fetchNaves','infoNaves']),
+      ...mapMutations(['fetchNaves','infoNaves']),
       
-      moreInfo (model) {
-      console.log(model)
+       info(name){
+          this.$store.dispatch("infoNaves", name).then ( () => {
+            this.$router.push('/shipsinfo')
+          })
+       
+      
     },
-        mounted(){
-         this.fetchIndex(index);
-      },
-    
+      
+      // obtenerNave(name){
+      //   this.$store.dispatch("infoNaves", name)
+      // }
+    },
+      
   }
 
-}
 </script>
 
 <style scoped>
