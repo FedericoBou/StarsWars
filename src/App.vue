@@ -5,15 +5,19 @@
       <router-link to="/">Home</router-link> ||
       <router-link to="/ships">Ships</router-link>
     </div>
+    
     <router-view/>
+    <Footer/>
   </div>
 </template>
 <script>
 import Head from '@/components/Head'
+import Footer from '@/components/Footer'
 
 export default{
   components:{
     Head,
+    Footer
   }
 }
 </script>
