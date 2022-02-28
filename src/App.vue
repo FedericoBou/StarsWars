@@ -3,9 +3,10 @@
     <div id="nav">
       <Head/>
       <router-link to="/">Home</router-link> ||
-      <router-link to="/ships">Ships</router-link>
+      <router-link to="/ships">Ships</router-link> ||
+      <router-link to="/register">Registration</router-link>||
+      <router-link to="/login" >Login</router-link>   
     </div>
-    
     <router-view/>
     <Footer/>
   </div>

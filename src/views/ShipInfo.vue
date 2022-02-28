@@ -28,18 +28,11 @@
 
 import {mapState, mapGetters } from "vuex";
 
-
-
-
 export default {
-
    computed:{
-
     ...mapState(['naves', 'modal', 'infoNave']),
     ...mapGetters(['allNaves', 'infoShips']),
-
-    
-    },
+  },
 }
 
   

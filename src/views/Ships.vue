@@ -8,12 +8,8 @@
       <!-- <b-button class="mb-3" pill variant="outline-warning" id="boton" size="sm" @click="obtenerNave(nave.name)">Más Info</b-button> -->
      </li>
    </ul>
-
-   
-  
   </div>
-  
-  
+   
 </template>
 
 <script>
@@ -23,9 +19,7 @@ import {mapActions, mapState, mapGetters, mapMutations } from "vuex";
 export default {
 
   components: {
- 
   },
-  
   data(){
       return{
        name: 'Ships',
@@ -34,31 +28,22 @@ export default {
   computed:{
 
     ...mapState(['naves', 'modal', 'infoNave']),
-    ...mapGetters(['allNaves', 'infoShips']),
-
-    
+    ...mapGetters(['allNaves', 'infoShips']),  
     },
-
     created(){
        this.$store.dispatch("fetchNaves")
-    
-  },
+    },
  
   methods:{    
-      ...mapActions(['fetchNaves','infoNaves']),
-      ...mapMutations(['fetchNaves','infoNaves']),
+    ...mapActions(['fetchNaves','infoNaves', 'obtenerPagina']),
+    ...mapMutations(['fetchNaves','infoNaves','obtenerPagina']),
       
        info(name){
           this.$store.dispatch("infoNaves", name).then ( () => {
             this.$router.push('/shipsinfo')
-          })
-       
-      
+          })  
     },
       
-      // obtenerNave(name){
-      //   this.$store.dispatch("infoNaves", name)
-      // }
     },
       
   }
