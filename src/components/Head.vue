@@ -5,10 +5,7 @@
           <img src="StarWars\starwars\src\components\Imagenes\logoSW.png" alt="">
         </div>
         <nav>
-          <ul>
-            <li><a href="#">Login</a></li> ||
-            <li><a href="#">Resgistrarse</a></li>
-          </ul>
+ 
         </nav>
     </header>
   </div>
