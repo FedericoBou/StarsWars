@@ -8,15 +8,11 @@ export default new Vuex.Store({
     naves:[],
     infoNave:[],
     loggedIn: false,
-  
-  
   },
- 
   getters:{
     allNaves: state => state.naves.responce,
     infoShips: state => state.infoNave.responce,
   },
-
   actions: {
     async fetchNaves({commit}){
       const responce = await axios.get('https://swapi.dev/api/starships/')
