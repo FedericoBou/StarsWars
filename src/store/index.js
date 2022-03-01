@@ -37,3 +37,4 @@ export default new Vuex.Store({
     infoNaves:(state, infoNave) => (state.infoNave = infoNave),
     }
 })
+// probando
