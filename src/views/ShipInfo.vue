@@ -34,8 +34,6 @@ export default {
     ...mapGetters(['allNaves', 'infoShips']),
   },
 }
-
-  
 </script>
 
 <style scoped>
