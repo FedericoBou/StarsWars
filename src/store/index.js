@@ -35,26 +35,6 @@ export default new Vuex.Store({
     obtenerPagina: (state, naves) => (state.naves = naves),
     infoNaves:(state, infoNave) => (state.infoNave = infoNave),
 
-    // hacerScroll() {
-    //     let pagina = 1;
-    //     window.onscroll = () => {
-    //     let bottomOfWindow = document.documentElement.scrollTop + 
-    //     window.innerHeight === document.documentElement.offsetHeight;
-    //     if (bottomOfWindow) {
-    //       if(pagina < 5){
-    //         this.$store.dispatch("obtenerPagina", pagina).then ( (resultado) => {
-    //         if(pagina < 5){
-    //           pagina++;
-    //         }
-    //         resultado.data.results.forEach(nave => {
-    //           this.naves.results.push(nave)
-    //         });
-    //         }) 
-    //       }
-
-    //     }
-    //   }
-    // }
   }
 })
 // probando
