@@ -15,11 +15,24 @@
 import Head from '@/components/Head'
 import Footer from '@/components/Footer'
 
+
 export default{
   components:{
     Head,
-    Footer
-  }
+    Footer,
+  
+  },
+  data(){
+    return {
+      user: ""
+    }
+  }, 
+  mounted() {
+    if (localStorage.activeUser) {
+      let activeUser = localStorage.activeUser;
+      this.user = JSON.parse(activeUser);
+    }
+  },
 }
 </script>
 <style>

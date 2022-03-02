@@ -27,7 +27,6 @@ export default new Vuex.Store({
     async obtenerPagina({ commit, state }, pagina) {
       const responce = await axios.get(`https://swapi.dev/api/starships/?page=${pagina}`)
       console.log(responce.data.next)
-      // commit('fetchNaves', responce.data)
       return responce;
     }
   }, 
@@ -35,6 +34,27 @@ export default new Vuex.Store({
     fetchNaves:(state, naves) => (state.naves = naves),
     obtenerPagina: (state, naves) => (state.naves = naves),
     infoNaves:(state, infoNave) => (state.infoNave = infoNave),
-    }
+
+    // hacerScroll() {
+    //     let pagina = 1;
+    //     window.onscroll = () => {
+    //     let bottomOfWindow = document.documentElement.scrollTop + 
+    //     window.innerHeight === document.documentElement.offsetHeight;
+    //     if (bottomOfWindow) {
+    //       if(pagina < 5){
+    //         this.$store.dispatch("obtenerPagina", pagina).then ( (resultado) => {
+    //         if(pagina < 5){
+    //           pagina++;
+    //         }
+    //         resultado.data.results.forEach(nave => {
+    //           this.naves.results.push(nave)
+    //         });
+    //         }) 
+    //       }
+
+    //     }
+    //   }
+    // }
+  }
 })
 // probando

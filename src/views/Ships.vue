@@ -29,7 +29,7 @@ export default {
  
   methods:{    
     ...mapActions(['fetchNaves','infoNaves', 'obtenerPagina']),
-    ...mapMutations(['fetchNaves','infoNaves','obtenerPagina']),
+    ...mapMutations(['fetchNaves','infoNaves','obtenerPagina','hacerScroll']),
       
     info(name){
       this.$store.dispatch("infoNaves", name).then ( () => {
@@ -37,24 +37,27 @@ export default {
           })  
     },
     hacerScroll() {
-        let pagina = 1;
-      window.onscroll = () => {
-        let bottomOfWindow = document.documentElement.scrollTop + 
-        window.innerHeight === document.documentElement.offsetHeight;
-        if (bottomOfWindow) {
-          if(pagina < 5){
-            this.$store.dispatch("obtenerPagina", pagina).then ( (resultado) => {
-            if(pagina < 5){
-              pagina++;
-            }
-            resultado.data.results.forEach(nave => {
-              this.naves.results.push(nave)
-            });
-            }) 
-          }
+      let pagina = 1;
+        window.onscroll = () => {
+          let bottomOfWindow = document.documentElement.scrollTop + 
+          window.innerHeight === document.documentElement.offsetHeight;
+          if (bottomOfWindow) {
+              this.$store.dispatch("obtenerPagina", pagina).then ( (resultado) => {
+                if (resultado.data.next != null) {
+                if (resultado.data.next != null){
+                  pagina++;
+                }
+                resultado.data.results.forEach(nave => {
+                  this.naves.results.push(nave)
+                });
 
+              }
+
+            })
+
+
+          }
         }
-      }
     }
       
   },
