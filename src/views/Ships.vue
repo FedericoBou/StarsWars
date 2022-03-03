@@ -5,48 +5,64 @@
       <h4 id = "nombre"> <strong >Nombre:</strong>  {{nave.name}} </h4> <br>
       <h6 id = "modelo"><strong >Modelo:</strong> {{nave.model}} </h6><br>
       <b-button class="mb-3" pill variant="outline-warning" id="boton" size="sm" @click="info(nave.name)">Más Info</b-button>
-      <!-- <b-button class="mb-3" pill variant="outline-warning" id="boton" size="sm" @click="obtenerNave(nave.name)">Más Info</b-button> -->
      </li>
    </ul>
   </div>
    
 </template>
-
 <script>
-
 import {mapActions, mapState, mapGetters, mapMutations } from "vuex";
-
 export default {
-
-  components: {
-  },
   data(){
       return{
        name: 'Ships',
       }
-    },
+  },
   computed:{
-
-    ...mapState(['naves', 'modal', 'infoNave']),
+    ...mapState(['naves','infoNave']),
     ...mapGetters(['allNaves', 'infoShips']),  
-    },
-    created(){
-       this.$store.dispatch("fetchNaves")
-    },
+  },
+  created(){
+    this.$store.dispatch("fetchNaves")
+    this.hacerScroll()
+  },
  
   methods:{    
     ...mapActions(['fetchNaves','infoNaves', 'obtenerPagina']),
-    ...mapMutations(['fetchNaves','infoNaves','obtenerPagina']),
+    ...mapMutations(['fetchNaves','infoNaves','obtenerPagina','hacerScroll']),
       
-       info(name){
-          this.$store.dispatch("infoNaves", name).then ( () => {
-            this.$router.push('/shipsinfo')
+    info(name){
+      this.$store.dispatch("infoNaves", name).then ( () => {
+        this.$router.push('/shipsinfo')
           })  
     },
+    hacerScroll() {
+      let pagina = 1;
+        window.onscroll = () => {
+          let bottomOfWindow = document.documentElement.scrollTop + 
+          window.innerHeight === document.documentElement.offsetHeight;
+          if (bottomOfWindow) {
+              this.$store.dispatch("obtenerPagina", pagina).then ( (resultado) => {
+                if (resultado.data.next != null) {
+                if (resultado.data.next != null){
+                  pagina++;
+                }
+                resultado.data.results.forEach(nave => {
+                  this.naves.results.push(nave)
+                });
+
+              }
+
+            })
+
+
+          }
+        }
+    }
       
-    },
+  },
       
-  }
+}
 
 </script>
 
